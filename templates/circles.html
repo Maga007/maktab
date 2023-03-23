@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Courses
+{% endblock %}
+
+{% block content %}
+<div id="fh5co-course">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>Our Course</h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for circle in circles %}
+            <div class="col-md-6 animate-box">
+                <div class="course">
+                    {% if circle.image.url != null %}
+                    <img src="{{circle.image.url}}" alt="" class="course-img">
+                    {% endif %}
+                    <div class="desc">
+                        <h3><a href="{% url 'circle' circle.id %}">{{circle.title}}</a></h3>
+                        <p>{{circle.content}}</p>
+                        <br>
+                        <a href="tell: +{{circle.phone}}"><b>+{{circle.phone}}</b></a>
+                        <span><a href="{% url 'circle' circle.id %}" class="btn btn-primary btn-sm btn-course">{{circle.price}}</a></span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sertificat
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Sertificat</h2>
+<div class="row">
+    {% for teacher in teachers %}
+    <div class="col-md-6 animate-box">
+        <a href="{% url 'teacher' teacher.id %}">
+            <div class="course">
+                {% if teacher.image.url != null %}
+                <img src="{{teacher.image.url}}" alt="" class="course-img">
+                {% endif %}
+                <div class="desc">
+                    <h3><a href="{% url 'teacher' teacher.id %}">{{teacher.title}}</a></h3>
+                    <p>{{teacher.content}}</p>
+                    <br>
+                    <a href="tell: +{{teacher.phone}}"><b>+{{teacher.phone}}</b></a>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %} 
+</div>
+{% endblock %}

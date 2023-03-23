@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Events
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for event in events %}
+        <div class="col-md-12 animate-box">
+            <a href="{% url 'event' event.id %}">
+                <div class="course">
+                    {% if event.image.url != null %}
+                    <img src="{{event.image.url}}" alt="" class="course-img" style="width: 200px; height: 200px;">
+                    {% endif %}
+                    <div class="desc" style="width: 80%;">
+                        <h3><a href="{% url 'event' event.id %}">{{event.title}}</a></h3>
+                        <p>{{event.content}}</p>
+                        <br>
+                        <a href="tell: +{{event.phone}}"><b>+{{event.phone}}</b></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
+{% endblock %}

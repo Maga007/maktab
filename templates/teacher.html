@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="display: flex; justify-content: center;">
+        <div class="col-md-12 animate-box">
+            <a href="{% url 'teacher' teacher.id %}" style="width: 100%; display: flex; justify-content: center;">
+                <div class="course">
+                    {% if teacher.image.url != null %}
+                    <img src="{{teacher.image.url}}" alt="" class="course-img" style="width: 200px; height: 200px;">
+                    {% endif %}
+                    <div class="desc" style="width: 100%;">
+                        <h3><a href="{% url 'teacher' teacher.id %}">{{teacher.title}}</a></h3>
+                        <p>{{teacher.content}}</p>
+                        <br>
+                        <a href="tell: +{{teacher.phone}}"><b>+{{teacher.phone}}</b></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

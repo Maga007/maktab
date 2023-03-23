@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+
+{% block title %}
+1-maktab
+{% endblock %}
+
+{% block content %}
+<aside id="fh5co-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            {% for new in news %}
+            {% if new.image.url != null %}
+           <li style="background-image: url({{new.image.url}});">
+            {% endif %}
+               <div class="overlay-gradient"></div>
+               <div class="container">
+                   <div class="row">
+                       
+                       <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                        <div class="slider-text-inner">
+                            <h1>{{new.title}}</h1>
+                             <h2>{{new.content}}</h2>
+                             <p><a class="btn btn-primary btn-lg" href="{% url 'new' new.id %}">Start Learning Now!</a></p>
+                        </div>
+                    </div>
+                    
+                   </div>
+               </div>
+           </li>
+           {% endfor %}
+           		   	
+          </ul>
+      </div>
+</aside>
+
+<div id="fh5co-course-categories">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>Course categories</h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for circle in circles %}
+            <div class="col-md-3 col-sm-6 text-center animate-box">
+                <a href="{% url 'circle' circle.id %}">
+                    <div class="services">
+                        <span class="icon" style="width: 90%;">
+                            {% if circle.image.url != null %}
+                            <img src="{{circle.image.url}}" style="height: 100%;" alt="">
+                            {% endif %}
+                        </span>
+                        <div class="desc">
+                            <h3><a href="{% url 'circle' circle.id %}">{{circle.title}}</a></h3>
+                            <p>{{circle.content}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-counter" class="fh5co-counters" style="background-image: url(/media/images/img_bg_4.jpg);" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    {% for info in infos %}
+                    <div class="col-md-3 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="icon-world"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="{{info.teacher}}" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Foreign Followers</span>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="icon-study"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="{{info.student}}" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Students Enrolled</span>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="icon-bulb"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="{{info.klas}}" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Classes Complete</span>
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="icon-head"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="{{info.certif}}" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Certified Teachers</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-course">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>Our Course</h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for circle in circles %}
+            <div class="col-md-6 animate-box">
+                <div class="course">
+                    {% if circle.image.url != null %}
+                    <img src="{{circle.image.url}}" alt="" class="course-img">
+                    {% endif %}
+                    <div class="desc">
+                        <h3><a href="{% url 'circle' circle.id %}">{{circle.title}}</a></h3>
+                        <p>{{circle.content}}</p>
+                        <br>
+                        <a href="tell: +{{circle.phone}}"><b>+{{circle.phone}}</b></a>
+                        <span><a href="{% url 'circle' circle.id %}" class="btn btn-primary btn-sm btn-course">{{circle.price}}</a></span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-testimonial" style="background-image: url(/media/images/school.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2><span>Teachers</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row animate-box">
+                    <div class="owl-carousel owl-carousel-fullwidth">
+                        {% for teacher in teachers %}
+                        <div class="item">
+                            <div class="testimony-slide active text-center">
+                                <div class="user">
+                                    {% if teacher.image.url != null %}
+                                    <img src="{{teacher.image.url}}" alt="{{teacher.title}}">
+                                    {% endif %}
+                                </div>
+                                <span>{{teacher.title}}<br><small><a href="{% url 'teacher' teacher.id %}" style="color: gold;">Teacher</a></small></span>
+                                <blockquote>
+                                    <p>&ldquo;{{teacher.content}}&rdquo;</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="item">
+                            <div class="testimony-slide active text-center">
+                                <div class="user" style="background-image: url(/media/images/person2.jpg);"></div>
+                                <span>Muhammad Shakarov<br><small>Middle</small></span>
+                                <blockquote>
+                                    <p>&ldquo;Ikki yarim yillik tajribaga ega bo'lgan dasturchi&rdquo;</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-blog">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <h2>News</h2>
+                <p>Maktabimiz haqidagi eng so'ngi yangiliklar</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for new in news %}
+            <div class="col-lg-4 col-md-4">
+                <div class="fh5co-blog animate-box">
+                    <a href="{% url 'new' new.id %}" class="blog-img-holder" style="background-image: url(/media/images/school.jpg); width: 100%; height: 100%;">
+                        {% if new.image.url != null %}
+                        <img src="{{new.image.url}}" style="width: 100%; height: 100%;" alt="{{new.title}}">
+                        {% endif %}
+                    </a>
+                    <div class="blog-text">
+                        <h3><a href="{% url 'new' new.id %}">{{new.title}}</a></h3>
+                        <span class="posted_on">{{new.date}}</span>
+                        <p>{{new.content}}</p>
+                    </div> 
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-lg-4 col-md-4">
+                <div class="fh5co-blog animate-box">
+                    <a href="#" class="blog-img-holder" style="background-image: url(/media/images/project-1.jpg);"></a>
+                    <div class="blog-text">
+                        <h3><a href="#">Maktabimiz yangiliklari</a></h3>
+                        <span class="posted_on">March. 15th</span>
+                        <p>Hozircha maktabimizda hech qanday yangiliklar yo'q</p>
+                    </div> 
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-gallery" id="instagram" class="fh5co-bg-section">
+    <div class="row text-center">
+        <h2><span>Instagram Gallery</span></h2>
+    </div>
+    <div class="row">
+        {% for instagram in instagrams %}
+        <div class="col-md-3 col-padded">
+            <a href="https://www.instagram.com/shmuhammad701/" class="gallery" style="background-image: url(/media/images/project-5.jpg);">
+                {% if instagram.image.url != null %}
+                <img src="{{instagram.image.url}}" style="width: 100%; height: 100%;" alt="{{instagram.title}}">
+                {% endif %}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

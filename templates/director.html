@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{director.title}}
+{% endblock %}
+
+{% block content %}
+    {% for director in directors %}
+    <div id="fh5co-about">
+        <div class="container">
+            <div class="col-md-9 animate-box">
+                <span><a href="Tell: {{director.phone}}">+{{director.phone}}</a></span>
+                <h2>{{director.title}}</h2>
+                <p>{{director.birthday}}</p>
+                <p>{{director.content}}</p>
+                <p>{{director.address}}</p>
+                <p>{{director.email}}</p>
+            </div>
+            <div class="col-md-3">
+                {% if director.image.url != null %}
+                <img class="img-responsive" src="{{director.image.url}}" alt="Free HTML5 Bootstrap Template">
+                {% else %}
+                <img class="img-responsive" src="/media/images/img_bg_2.jpg" alt="Free HTML5 Bootstrap Template">
+                {% endif %}
+                <p><b class="btn btn-danger">+{{director.phone}}</b></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

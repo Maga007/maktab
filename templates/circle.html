@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{circle.title}}
+{% endblock %}
+
+{% block content %}
+<div id="fh5co-about">
+    <div class="container">
+        <div class="col-md-9 animate-box">
+            <span>Circles</span>
+            <h2>Welcome to Education Website</h2>
+            <p>{{circle.title}}</p>
+            <p>{{circle.content}}</p>
+            <p>{{circle.price}}</p>
+        </div>
+        <div class="col-md-3">
+            {% if circle.image.url != null %}
+            <img class="img-responsive" src="{{circle.image.url}}" style="height: 300px;" alt="Free HTML5 Bootstrap Template">
+            {% else %}
+            <img class="img-responsive" src="/media/images/img_bg_2.jpg" alt="Free HTML5 Bootstrap Template">
+            {% endif %}
+            <p><b class="btn btn-danger">{{circle.price}}</b></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

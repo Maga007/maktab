@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block content %}
+<div id="fh5co-about">
+    <div class="container">
+        {% for new in news %}
+        <div class="col-md-6 animate-box">
+            <span>new</span>
+            <h2>{{new.title}}</h2>
+            <p>{{new.content}}</p>
+            <p>{{new.price}}</p>
+        </div>
+        <div class="col-md-6">
+            {% if new.image.url != null %}
+            <img class="img-responsive" src="{{new.image.url}}" alt="Free HTML5 Bootstrap Template">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
